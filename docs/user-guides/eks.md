@@ -14,5 +14,5 @@ You can use any inputs from the upstream module to configure the cluster in `eks
 See all available feature [here](https://github.com/terraform-aws-modules/terraform-aws-eks#available-features)
 
 ```json
-{!terragrunt/live/production/eu-west-1/clusters/demo/eks/terragrunt.hcl!}
+{!terragrunt/live/production/us-east-2/clusters/demo/eks/terragrunt.hcl!}
 ```

@@ -1,3 +1,16 @@
 ---
-Owner: particuleio
-Project: teks
+business_owner: "Digital"
+cost_center: "N/A"
+country: "BR"
+customer_facing: false
+customer_impacting: false
+description: "N/A"
+environment: "nickel"
+iac_source: "https://github.com/Agrium/tf-eks-br"
+iac_type: "TF"
+iac_workspace: "sharedtools-br-nickel"
+market: "br"
+owner: DigitalBrazil
+pillar: "platform"
+project: EKS
+runtime: "nickel"

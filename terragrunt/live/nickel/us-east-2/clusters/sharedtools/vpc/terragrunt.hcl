@@ -5,7 +5,7 @@ include "root" {
 }
 
 terraform {
-  source = "github.com/terraform-aws-modules/terraform-aws-vpc?ref=v3.14.2"
+  source = "github.com/terraform-aws-modules/terraform-aws-vpc//.?ref=v3.14.2"
 }
 
 locals {
@@ -14,7 +14,7 @@ locals {
     "${include.root.locals.merged.aws_region}b",
     "${include.root.locals.merged.aws_region}c"
   ]
-  cidr            = "10.0.0.0/16"
+  cidr            = "100.100.0.0/16"
   subnets         = cidrsubnets(local.cidr, 3, 3, 3, 3, 3, 3)
   private_subnets = chunklist(local.subnets, 3)[0]
   public_subnets  = chunklist(local.subnets, 3)[1]

@@ -42,7 +42,7 @@ aws_account_id: 161285725140
 prefix: pio-teks
 
 # AWS S3 bucket region where Terraform will store state
-tf_state_bucket_region: eu-west-1
+tf_state_bucket_region: us-east-2
 
 # Github username or organization, this can be used by Flux2 to auto configure
 # Github bootstrap
@@ -63,18 +63,18 @@ env: production
 default_domain_name: clusterfrak-dynamics.io
 ```
 
-4. In `terragrunt/live/production/eu-west-1/region_values.yaml` there is nothing
-   to change if you want to use the example region (`eu-west-1`), if you want to
+4. In `terragrunt/live/production/us-east-2/region_values.yaml` there is nothing
+   to change if you want to use the example region (`us-east-2`), if you want to
    use another region, just rename the folder, for example `us-east-1` and then
    edit `region_values.yaml` to suit your need.
 
 ```
 ---
-aws_region: eu-west-1
+aws_region: us-east-2
 ```
 
 5. In
-   `terragrunt/live/production/eu-west-1/clusters/demo/component_values.yaml`,
+   `terragrunt/live/production/us-east-2/clusters/demo/component_values.yaml`,
    `name` will be used to compute full cluster name, the default is
    `$PREFIX-$ENV_$NAME` which is defined
    [here](https://github.com/particuleio/teks/blob/main/terragrunt/live/production/terragrunt.hcl#L34).
@@ -82,12 +82,12 @@ aws_region: eu-west-1
    `terragrunt.hcl` files
 
 6. You can edit each modules individually inside
-   `terragrunt/live/production/eu-west-1/clusters/demo`.
+   `terragrunt/live/production/us-east-2/clusters/demo`.
    For official modules, please refer to their respective documentations. For
    `eks-addons` you can check the module [here](https://github.com/particuleio/terraform-kubernetes-addons).
 
 7. Configure Flux2 Gitops in
-   `terragrunt/live/production/eu-west-1/clusters/demo/eks-addons/terragrunt.hcl` or disable it if needed, you will need a
+   `terragrunt/live/production/us-east-2/clusters/demo/eks-addons/terragrunt.hcl` or disable it if needed, you will need a
    GITHUB_TOKEN available from you terminal. Also to configure it according the
    your repository name.
 
@@ -108,27 +108,27 @@ aws_region: eu-west-1
 ```
 
 6. Make sure you AWS credential are correctly loaded inside your terminal, then
-   from the `terragrunt/live/production/eu-west-1/clusters/demo`.
+   from the `terragrunt/live/production/us-east-2/clusters/demo`.
 
 ```
 terragrunt run-all apply
 
 
-INFO[0000] The stack at /home/klefevre/git/archifleks/teks-quickstart/terragrunt/live/production/eu-west-1/clusters/demo will be processed in the following order for command apply:
+INFO[0000] The stack at /home/klefevre/git/archifleks/teks-quickstart/terragrunt/live/production/us-east-2/clusters/demo will be processed in the following order for command apply:
 Group 1
-- Module /home/klefevre/git/archifleks/teks-quickstart/terragrunt/live/production/eu-west-1/clusters/demo/encryption-config
-- Module /home/klefevre/git/archifleks/teks-quickstart/terragrunt/live/production/eu-west-1/clusters/demo/vpc
+- Module /home/klefevre/git/archifleks/teks-quickstart/terragrunt/live/production/us-east-2/clusters/demo/encryption-config
+- Module /home/klefevre/git/archifleks/teks-quickstart/terragrunt/live/production/us-east-2/clusters/demo/vpc
 
 Group 2
-- Module /home/klefevre/git/archifleks/teks-quickstart/terragrunt/live/production/eu-west-1/clusters/demo/eks
-- Module /home/klefevre/git/archifleks/teks-quickstart/terragrunt/live/production/eu-west-1/clusters/demo/vpc-endpoints
+- Module /home/klefevre/git/archifleks/teks-quickstart/terragrunt/live/production/us-east-2/clusters/demo/eks
+- Module /home/klefevre/git/archifleks/teks-quickstart/terragrunt/live/production/us-east-2/clusters/demo/vpc-endpoints
 
 Group 3
-- Module /home/klefevre/git/archifleks/teks-quickstart/terragrunt/live/production/eu-west-1/clusters/demo/aws-auth
-- Module /home/klefevre/git/archifleks/teks-quickstart/terragrunt/live/production/eu-west-1/clusters/demo/eks-addons-critical
+- Module /home/klefevre/git/archifleks/teks-quickstart/terragrunt/live/production/us-east-2/clusters/demo/aws-auth
+- Module /home/klefevre/git/archifleks/teks-quickstart/terragrunt/live/production/us-east-2/clusters/demo/eks-addons-critical
 
 Group 4
-- Module /home/klefevre/git/archifleks/teks-quickstart/terragrunt/live/production/eu-west-1/clusters/demo/eks-addons
+- Module /home/klefevre/git/archifleks/teks-quickstart/terragrunt/live/production/us-east-2/clusters/demo/eks-addons
 ```
 
 7. Load Kubeconfig, you still need to have the AWS CLI loaded and configure with
@@ -143,7 +143,7 @@ export KUBECONFIG=$PWD/eks/kubeconfig
 ```
 k get ingress --all-namespaces
 NAMESPACE    NAME                            CLASS   HOSTS                               ADDRESS                                                                         PORTS     AGE
-monitoring   kube-prometheus-stack-grafana   nginx   telemetry.clusterfrak-dynamics.io   k8s-ingressn-ingressn-d192ac60af-c080dd921f212013.elb.eu-west-1.amazonaws.com   80, 443   12m
+monitoring   kube-prometheus-stack-grafana   nginx   telemetry.clusterfrak-dynamics.io   k8s-ingressn-ingressn-d192ac60af-c080dd921f212013.elb.us-east-2.amazonaws.com   80, 443   12m
 ```
 
 9. Log into Grafana. From the `eks-addons` folder
@@ -156,7 +156,7 @@ terragrunt output grafana_password
 10. Use the cluster to do stuff you normally do on a Kubernetes Cluster
 
 11. To destroy everything simply run `terragrunt run-all destroy --terragrunt-exclude-dir=aws-auth` from the
-    `eu-west-1/clusters/demo` folder.
+    `us-east-2/clusters/demo` folder.
 
 :warning: there is an issue with flux 2 namespace not terminating correctly
 because CRDs are deleted before namespace is terminated. To unstuck `flux-system` namespace deletion, you can run the following command:

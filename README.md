@@ -108,7 +108,7 @@ support a bunch of various configuration.
 
 [Bottlerocket OS](https://github.com/bottlerocket-os/bottlerocket) is available
 for node groups (see example
-[here](https://github.com/particuleio/teks/tree/main/terragrunt/live/production/eu-west-1/clusters/demo/eks)).
+[here](https://github.com/particuleio/teks/tree/main/terragrunt/live/production/us-east-2/clusters/demo/eks)).
 Bottle rocket is a container centric OS with less attack surface and no default
 shell.
 
@@ -169,7 +169,7 @@ Blog](https://www.cncf.io/blog/2021/03/15/multi-cluster-monitoring-with-thanos/)
 
 With either Amazon Linux or BottleRocket, you can use a mix of ARM and AMD64
 instances. [Check out our
-example](https://github.com/particuleio/teks/blob/main/terragrunt/live/production/eu-west-1/clusters/demo/eks/terragrunt.hcl#L157)
+example](https://github.com/particuleio/teks/blob/main/terragrunt/live/production/us-east-2/clusters/demo/eks/terragrunt.hcl#L157)
 
 ### Helm v3 provider
 

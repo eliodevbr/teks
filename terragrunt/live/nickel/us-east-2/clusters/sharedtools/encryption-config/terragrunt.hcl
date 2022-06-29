@@ -5,12 +5,12 @@ include "root" {
 }
 
 terraform {
-  source = "github.com/particuleio/terraform-aws-kms.git?ref=v1.1.0"
+  source = "github.com/particuleio/terraform-aws-kms.git//.?ref=v1.1.0"
 }
 
 inputs = {
   description = "EKS Secret Encryption Key for ${include.root.locals.full_name}"
-  alias       = "${include.root.locals.full_name}_secret_encryption"
+  alias       = replace("${include.root.locals.full_name}_secret_encryption", "_", "-")
   tags = merge(
     include.root.locals.custom_tags
   )
